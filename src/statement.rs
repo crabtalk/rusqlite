@@ -895,6 +895,22 @@ pub enum StatementStatus {
     FilterHit = 8,
     /// Equivalent to `SQLITE_STMTSTATUS_MEMUSED` (3.20.0)
     MemUsed = 99,
+    /// Equivalent to libSQL's `LIBSQL_STMTSTATUS_ROWS_READ`. Only the bundled
+    /// SQLite carries this counter.
+    #[cfg(all(
+        feature = "bundled",
+        not(feature = "bundled-sqlcipher"),
+        not(all(target_family = "wasm", target_os = "unknown"))
+    ))]
+    RowsRead = 1025,
+    /// Equivalent to libSQL's `LIBSQL_STMTSTATUS_ROWS_WRITTEN`. Only the
+    /// bundled SQLite carries this counter.
+    #[cfg(all(
+        feature = "bundled",
+        not(feature = "bundled-sqlcipher"),
+        not(all(target_family = "wasm", target_os = "unknown"))
+    ))]
+    RowsWritten = 1026,
 }
 
 #[cfg(test)]
