@@ -430,7 +430,7 @@ mod build_linked {
             println!("cargo:rerun-if-env-changed=VCPKGRS_DYNAMIC");
         }
 
-        // dependents can access `DEP_SQLITE3_LINK_TARGET` (`sqlite3` being the
+        // dependents can access `DEP_BERM_SQLITE3_LINK_TARGET` (`berm_sqlite3` being the
         // `links=` value in our Cargo.toml) to get this value. This might be
         // useful if you need to ensure whatever crypto library sqlcipher relies
         // on is available, for example.

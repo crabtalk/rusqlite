@@ -1,16 +1,19 @@
 [package]
-name = "libsqlite3-sys"
+name = "berm-libsqlite3-sys"
 version = "0.37.0"
 authors = ["The rusqlite developers"]
 edition = "2021"
-repository = "https://github.com/rusqlite/rusqlite"
-description = "Native bindings to the libsqlite3 library"
+repository = "https://github.com/crabtalk/rusqlite"
+description = "Native bindings to the libsqlite3 library, with libSQL's rows-read and rows-written statement counters"
 license = "MIT"
-links = "sqlite3"
+links = "berm_sqlite3"
 build = "build.rs"
 keywords = ["sqlite", "sqlcipher", "ffi"]
 categories = ["external-ffi-bindings"]
 exclude = ["**/*.sh"]
+
+[lib]
+name = "libsqlite3_sys"
 
 [features]
 default = ["min_sqlite_version_3_34_1"]

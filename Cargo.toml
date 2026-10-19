@@ -1,12 +1,12 @@
 [package]
-name = "rusqlite"
+name = "berm-rusqlite"
 # Note: Update version in README.md when you change this.
 version = "0.39.0"
 authors = ["The rusqlite developers"]
 edition = "2021"
-description = "Ergonomic wrapper for SQLite"
-repository = "https://github.com/rusqlite/rusqlite"
-documentation = "https://docs.rs/rusqlite/"
+description = "Ergonomic wrapper for SQLite, with libSQL's rows-read and rows-written statement counters"
+repository = "https://github.com/crabtalk/rusqlite"
+documentation = "https://docs.rs/berm-rusqlite/"
 readme = "README.md"
 keywords = ["sqlite", "database", "ffi"]
 license = "MIT"
@@ -173,7 +173,7 @@ smallvec = "1.6.1"
 rusqlite-macros = { path = "rusqlite-macros", version = "0.4.2", optional = true }
 
 [target.'cfg(not(all(target_family = "wasm", target_os = "unknown")))'.dependencies]
-libsqlite3-sys = { path = "libsqlite3-sys", version = "0.37.0" }
+libsqlite3-sys = { package = "berm-libsqlite3-sys", path = "libsqlite3-sys", version = "0.37.0" }
 
 [target.'cfg(all(target_family = "wasm", target_os = "unknown"))'.dependencies]
 sqlite-wasm-rs = { version = "0.5.1", default-features = false }

@@ -1,3 +1,20 @@
+# berm-rusqlite
+
+A fork of [rusqlite](https://github.com/rusqlite/rusqlite) 0.39.0 and its `libsqlite3-sys` 0.37.0, published as `berm-rusqlite` and `berm-libsqlite3-sys` for [berm](https://github.com/crabtalk/berm).
+
+## What differs from upstream
+
+- The bundled SQLite counts libSQL's `LIBSQL_STMTSTATUS_ROWS_READ` and `LIBSQL_STMTSTATUS_ROWS_WRITTEN` per statement, read through `Statement::get_status` with `StatementStatus::RowsRead` and `StatementStatus::RowsWritten`. Both exist only with the `bundled` feature, and not with `bundled-sqlcipher` or on `wasm32-unknown-unknown`.
+- `berm-libsqlite3-sys` declares `links = "berm_sqlite3"`, so it resolves in one graph beside upstream `libsqlite3-sys`. Its metadata reaches dependents as `DEP_BERM_SQLITE3_*`. Both crates export the same `sqlite3_*` symbols: a binary that builds both fails to link.
+- The library names are upstream's, `rusqlite` and `libsqlite3_sys`. Depend on the fork under upstream's name and no `use` line changes:
+
+```toml
+[dependencies]
+rusqlite = { package = "berm-rusqlite", version = "0.39.0", features = ["bundled"] }
+```
+
+---
+
 # Rusqlite
 
 [![Latest Version](https://img.shields.io/crates/v/rusqlite.svg)](https://crates.io/crates/rusqlite)
